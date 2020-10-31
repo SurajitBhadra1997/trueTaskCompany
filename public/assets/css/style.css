@@ -1,0 +1,287 @@
+/* it's cheery here */
+
+.leftBarToggler {
+    background: none;
+    border: none;
+    font-size: 28px;
+    padding: 0;
+    line-height: 1;
+    position: absolute;
+    left: 10px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-right: 1em;
+}
+.leftBarToggler .custom-control-input {
+    position: absolute;
+    left: 0px;
+    z-index: 0;
+    width: 1.75rem;
+    height: 1.75rem;
+    opacity: 0;
+    cursor: pointer;
+}
+ #leftBarRevToggler {
+	display: none;
+}
+body[data-leftbar-compact-mode=condensed] .wrapper #leftBarToggler {
+	display: none;
+}
+body[data-leftbar-compact-mode=condensed] .wrapper #leftBarRevToggler {
+	display: block;
+}
+@media screen and (max-width: 767px) {
+	#leftBarToggler {
+		display: none;
+	}
+}
+
+.right-context-bar {
+	width: 100%;
+	padding: 0;
+	z-index: 9999;
+    right: -470px;
+	position: absolute;
+    background-color: #fff;
+     -webkit-box-shadow: 0 0 24px 0 rgba(49,58,70,.1), 0 1px 0 0 rgba(49,58,70,.08); 
+    box-shadow: 0 0 24px 0 rgba(49,58,70,.1), 0 1px 0 0 rgba(49,58,70,.08);
+    display: block;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+}
+.right-context-enabled .right-context-bar {
+    right: 0;
+}
+.form-wizard-header.nav-pills li a.nav-link {
+    font-weight: 400;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.fallback input[type="file"] {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    opacity: 0;
+}
+.dropzone {
+    position: relative;
+}
+.gantt .bar-label {
+    dominant-baseline: central;
+    text-anchor: start;
+    font-size: 12px;
+    font-weight: lighter;
+}
+.myHeightDiv div {
+    height: 100px;
+    padding: 5px;
+}
+.myHeightWork div {
+    height: 75px;
+    padding: 5px;
+}
+.metismenu a.active {
+    color: #fff!important;
+}
+
+/* .BrainhubCarousel .BrainhubCarousel__trackContainer .BrainhubCarousel__track {
+    width: 400px!important;
+} */
+.BrainhubCarousel .BrainhubCarousel__trackContainer .BrainhubCarousel__track img.img-example {
+    height: 450px;
+    width: auto;
+    object-fit: cover;
+}
+
+.lightbox .grid-container div.modalImgBox {
+    top: 0px!important;
+}
+
+
+.pdfViewer hr {
+  border-top: 2px dotted #3f51b5;
+}
+@media (min-width: 576px) {
+.modal-dialog {
+    max-width: 650px!important;
+    margin: 1.75rem auto;
+}
+}
+.pdfViewer button {
+  margin-right: 10px;
+  background: #3f51b5;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  width: 100px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 1px #ccc;
+}
+
+/* For pdf */
+.react-pdf__Page {
+  margin-top: 10px;
+}
+.react-pdf__Page__textContent {
+  border: 1px solid darkgrey;
+  box-shadow: 5px 5px 5px 1px #ccc;
+  border-radius: 5px;
+}
+
+.react-pdf__Page__annotations.annotationLayer {
+  padding: 20px;
+}
+
+.react-pdf__Page__canvas {
+  margin: 0 auto;
+}
+
+.modal-content {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.TaskDetailsModal {
+    background: #0000005e;
+    overflow: hidden;
+}
+.TaskDetailsModal .modal-content {
+    overflow-y: auto;
+    max-height: 600px;
+}
+.TaskDetailsModal .modal-content .close {
+    font-size: 1.57rem;
+    position: absolute;
+    font-weight: 700;
+    float: none;
+    line-height: 1;
+    color: #000;
+    text-shadow: none;
+    opacity: .5;
+    right: 5px;
+    top: 17px;
+    z-index: 9;
+}
+.add-new-task .react-datepicker-wrapper {
+    display: block!important;
+}
+
+/* edit_profile_page css starts here */
+
+.edit_profile_page .card .image {
+    overflow: hidden;
+    height: 130px;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.edit_profile_page .card-user .author {
+    text-align: center;
+    text-transform: none;
+    margin-top: -77px;
+}
+.edit_profile_page .card-user .avatarMain {
+    width: 124px;
+    height: 124px;
+    border: 1px solid #fff;
+    position: relative;
+}
+.edit_profile_page .card .avatar {
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+.edit_profile_page .card-user .author a+p.description {
+    margin-top: -7px;
+    font-size: 1.14em;
+    color: #9a9a9a;
+    font-weight: 300;
+}
+.edit_profile_page .card-user .button-container {
+    margin-bottom: 6px;
+    text-align: center;
+}
+.edit_profile_page .btn.btn-icon.btn-sm, .navbar .navbar-nav>a.btn.btn-icon.btn-sm {
+    height: 1.875rem;
+    min-width: 1.875rem;
+    width: 1.875rem;
+    padding: 0;
+    line-height: 1.75;
+    font-size: .9375rem;
+    overflow: hidden;
+    position: relative;
+    border-radius: 50%;
+}
+.edit_profile_page input.fileUploadBtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+.edit_profile_page .button-container button {
+    position: relative;
+}
+.comment-area-box textarea.border {
+    border: 1px solid #dee2e6!important;
+}
+.tag_user {
+    position: absolute;
+    background: #fff;
+    padding: 1em;
+    width: 300px;
+    height: auto;
+    left: 15px;
+    top: auto;
+    opacity: 0;
+    z-index: 9999;
+    border-radius: 4px;
+    visibility: hidden;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 2px 13px #00000024;
+}
+
+.tag_user.show {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.3s ease-in-out;
+}
+.side-nav .side-nav-link i {
+    display: inline-block;
+    line-height: 1.0625rem;
+    margin: 0 5px 0 0;
+    font-size: 1.1rem;
+    vertical-align: middle;
+    width: 20px;
+}
+.side-nav .side-nav-link {
+    padding: 10px 10px;
+}
+.side-nav .menu-arrow {
+    right: 7px;
+    line-height: unset;
+    font-size: 1.2rem;
+}
+.side-nav-forth-level li a, .side-nav-second-level li a, .side-nav-third-level li a {
+    padding: 8px 20px 8px 40px;
+}
+.breadcrumb-item {
+    font-size: 17px;
+}
+.table td, .table th {
+    padding: .5rem;
+}
+.btn {
+    padding: 0.45rem 0.9rem!important;
+}

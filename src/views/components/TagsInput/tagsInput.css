@@ -1,0 +1,67 @@
+/* created by cheery, ask him for more information */
+
+.cheery-tags-input .tags-input {
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 5px;
+    width: 100%;
+    max-width: 100%;
+    font-size: 13px;
+    border: #cecece solid 1px;
+    border-radius: 3px;
+}
+.cheery-tags-input .tags-input .tag {
+    margin-bottom: 2px;
+    margin-right: 3px;
+}
+.cheery-tags-input .tags-input input {
+    width: 100%;
+    border: none;
+    outline: none;
+}
+.cheery-tags-input .tag {
+    display: inline-flex;
+    padding: 2px 3px 4px 5px;
+    background-color: #cecece;
+    border-radius: 3px;
+}
+
+.cheery-tags-input button.delete {
+    display: inline-block;
+    position: relative;
+    margin-left: 5px;
+    margin-top: 3px;
+    padding: 0;
+    width: 15px;
+    height: 15px;
+    background-color: rgb(234 234 234);
+    cursor: pointer;
+    border: none;
+    outline: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.cheery-tags-input button.delete:hover {
+    opacity: 0.8;
+}
+.cheery-tags-input button.delete:before, .cheery-tags-input button.delete:after {
+    position: absolute;
+    left: 7px;
+    top: 2px;
+    content: ' ';
+    height: 12px;
+    width: 1.4px;
+    background-color: #333;
+}
+.cheery-tags-input button.delete:before {
+    transform: rotate(45deg);
+}
+.cheery-tags-input button.delete:after {
+    transform: rotate(-45deg);
+}
+
+.cheery-tags-input .help {
+    font-size: 12px;
+    color: #555;
+}
