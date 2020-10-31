@@ -99,7 +99,7 @@ export default class menu extends Component {
               }
             >
               <i className="uil-layer-group" />
-              <span> Employee </span>
+              <span> Member </span>
               <span className="menu-arrow" />
             </a>
             <ul
@@ -112,15 +112,15 @@ export default class menu extends Component {
               aria-expanded="false"
             >
               <li>
-                <NavLink activeClassName="active" to="/add-employee">
-                Add Employee
+                <NavLink activeClassName="active" to="/add-member">
+                Add Member
                 </NavLink>
               </li>
-              {/* <li>
-                <NavLink activeClassName="active" to="/subscription-report">
-                  Subscription Report
+              <li>
+                <NavLink activeClassName="active" to="/view-member">
+                View Member
                 </NavLink>
-              </li> */}
+              </li>
             </ul>
           </li>
           {/* <li className="side-nav-item">

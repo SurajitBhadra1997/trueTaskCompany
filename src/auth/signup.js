@@ -10,26 +10,27 @@ export default class index extends Component {
 
     this.state = {
       isloading: false,
-      firstname:"",
-      lastname:'',
-      userbio:'',
+      // firstname:"",
+      // lastname:'',
+      // userbio:'',
       email:'',
       password:'',
       companyname:'',
-      website:'',
-      facebook:'',
-      twitter:'',
-      instagram:'',
-      linkedin:'',
-      skype:'',
-      github:'',
-      selectedUserType:"",
-      usertypeoption:[
-        {label:"Select",value:"Select"},
-        {label:"Project Manager",value:"PM"},
-        {label:"Team Member",value:"TM"}
+      phone:"",
+      // website:'',
+      // facebook:'',
+      // twitter:'',
+      // instagram:'',
+      // linkedin:'',
+      // skype:'',
+      // github:'',
+      // selectedUserType:"",
+      // usertypeoption:[
+      //   {label:"Select",value:"Select"},
+      //   {label:"Project Manager",value:"PM"},
+      //   {label:"Team Member",value:"TM"}
 
-      ],
+      // ],
 
 
       type: "error",
@@ -57,13 +58,13 @@ console.log("event.target.value",selectedUserType);
   }
 
   signUp = async () => {
-    let projecttypeselect = Array.prototype.map
-      .call(this.state.selectedUserType, (s) => s.value)
-      .toString();
-    console.log(projecttypeselect);
+    // let projecttypeselect = Array.prototype.map
+    //   .call(this.state.selectedUserType, (s) => s.value)
+    //   .toString();
+    // console.log(projecttypeselect);
     // let data = this.validate();
     // console.log('data',data);
-    if(this.state.firstname =='' && this.state.lastname =='' && this.state.userbio =='' && this.state.email =='' && this.state.password =='')
+    if(this.state.companyname =='' && this.state.phone =='' && this.state.email =='' && this.state.password =='')
     {
       this.setState({
         type: "warning",
@@ -75,23 +76,14 @@ console.log("event.target.value",selectedUserType);
     else
     {
       let data = {
-        "type":projecttypeselect,
-        "firstname":this.state.firstname,
-        "lastname":this.state.lastname,
-        "biography":this.state.userbio,
-        "email":this.state.email,
-        "password":this.state.password,
-        "companyname":this.state.companyname,
-        "facebook":this.state.facebook,
-        "twitter":this.state.twitter,
-        "instagram":this.state.instagram,
-        "linkedin":this.state.linkedin,
-        "skype":this.state.skype,
-        "github":this.state.github,
-        //"type":"1"
-      }
 
-      let result = await HttpClient.requestData("register","POST",data);
+        "name":this.state.companyname,
+        "email":this.state.email,
+        "phone":this.state.phone,
+        "password":this.state.password,
+      }
+     console.log("dataaaaa",data);
+      let result = await HttpClient.requestData("company-register","POST",data);
       console.log('result',result);
       if(result && result.status)
       {

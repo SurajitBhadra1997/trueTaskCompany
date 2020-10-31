@@ -39,7 +39,7 @@ export default class topnav extends Component {
                         id="topnav-apps"
                       >
                         <i className="uil-apps mr-1" />
-                         Welcome to Trutask Admin Panel
+                         Welcome to Trutask Company Panel
                       </Link>
                     </li>
                     {/* <li

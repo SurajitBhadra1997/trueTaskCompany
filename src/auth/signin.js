@@ -113,12 +113,12 @@ export default class index extends Component {
         // else
         // {
         let data = {
-          email:"admin@gmail.com",
-          password:"123456",
+          email:this.state.username,
+          password:this.state.password,
           //type: "PM",
         };
         console.log(data);
-        let result = await HttpClient.requestData("admin-login", "POST", data);
+        let result = await HttpClient.requestData("company-login", "POST", data);
         console.log("result", result);
         if (result && result.status) {
           let data = result.data;

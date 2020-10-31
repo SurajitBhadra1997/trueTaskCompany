@@ -13,22 +13,22 @@ export default class index extends Component {
     this.state = {
       user_data:{},
       img_url:"http://trutask.easytodb.com/uploads/user/",
-      fname:"",
-      lname:"",
+      companyname:"",
+      // lname:"",
     };
   }
   async componentDidMount() 
   {
-    // let data = reactLocalStorage.getObject('user_data');
-    // console.log(data);
-    // if(data && Object.keys(data).length !== 0)
-    // {
-    //   this.setState({isLogin:true,
-    //     user_data:data,
-    //     fname:data.firstname.charAt(0),
-    //     lname:data.lastname.charAt(0),
-    //   });
-    // }
+    let data = reactLocalStorage.getObject('user_data');
+    console.log(data);
+    if(data && Object.keys(data).length !== 0)
+    {
+      this.setState({isLogin:true,
+        user_data:data,
+        companyname:data.name,
+        // lname:data.lastname.charAt(0),
+      });
+    }
   }
 
   activateCondensedSidebar() {
@@ -138,7 +138,7 @@ export default class index extends Component {
                    
                   className="rounded-circle"
                  >
-                   A
+                   C
                  </div>
                     
                    
@@ -147,9 +147,9 @@ export default class index extends Component {
                 {/* )} */}
                 <span>
                   <span className="account-user-name">
-                   Admin
+                   {this.state.companyname}
                   </span>
-                  <span className="account-position"> Admin</span>
+                  <span className="account-position"> {this.state.companyname}</span>
                 </span>
               </a>
               <div className="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown">

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import Breadcomb from "../components/breadcomb";
+import Select from "react-select";
+import { reactLocalStorage } from "reactjs-localstorage";
+import ReactJsAlert from "reactjs-alert";
+import HttpClient from "./../../utils/HttpClient";
 
 export default class index extends Component {
     constructor(props) {
@@ -8,60 +12,195 @@ export default class index extends Component {
     
         this.state = {
              phone:"",
-             name:"",
+             f_name:"",
+             l_name:"",
              email:"",
              selectedFiles:[],
              firstFile: "",
-             date:""
+             date:"",
+             bio:"",
+             companyname:"",
+             usertypeoption: [
+                // { label: "Select", value: "Select" },
+                { label: "Project Manager", value: "PM" },
+                { label: "Team Member", value: "TM" },
+                { label: "Portfolio Manger", value: "PFM" },
+                { label: "Program Manger", value: "PGM" },
+              ],
+              user_data:{},
+              company_id:"",
+              type: "error",
+              status: false,
+              title: "Hey! this is an error.",
+              quote: "Something went wrong. Please try again!",
+              selectedUserType:"",
         }
     }
-    // async componentDidMount(){
-
-    // }
-    onChangeFirst = async (event) => {
-        let data = [];
-        let file = {
-          preview: URL.createObjectURL(event.target.files[0]),
-        };
+    async componentDidMount() 
+  {
+    let data = reactLocalStorage.getObject('user_data');
+    console.log(data);
+    if(data && Object.keys(data).length !== 0)
+    {
+      this.setState({isLogin:true,
+        user_data:data,
+        company_id:data.id,
+        // lname:data.lastname.charAt(0),
+      });
+    }
+  }
+    // onChangeFirst = async (event) => {
+    //     let data = [];
+    //     let file = {
+    //       preview: URL.createObjectURL(event.target.files[0]),
+    //     };
+    //     this.setState({
+    //       firstFile: event.target.files[0],
+    //       selectedFiles: [
+    //         {
+    //           preview: URL.createObjectURL(event.target.files[0]),
+    //         },
+    //       ],
+    //     });
+    //     console.log("selected files", this.state.selectedFiles);
+    //     setTimeout(() => {
+    //       console.log("selected files", this.state.firstFile);
+    //     }, 3000);
+    //   };
+      handelUserType = (selectedUserType) => {
+    setTimeout(() => {
+      console.log("event.target.value", selectedUserType.value);
+    }, 3000);
+    let c = [];
+    c.push(selectedUserType.value);
+    this.setState({
+      selectedUserType: selectedUserType.value,
+      isloading1:false
+    });
+    setTimeout(() => {
+      console.log("event.target.value", this.state.selectedUserType);
+    }, 3000);
+  };
+  signUp = async () => {
+    // let projecttypeselect = Array.prototype.map
+    //   .call(this.state.selectedUserType, (s) => s.value)
+    //   .toString();
+    // console.log(projecttypeselect);
+    // let data = this.validate();
+    // console.log('data',data);
+    if(this.state.companyname =='' && this.state.f_name =='' && this.state.l_name =='' && this.state.email =='' && this.state.password =='')
+    {
+      this.setState({
+        type: "warning",
+        status: true,
+        title: "Please Fillup Basic Details.",
+        quote: "Something went wrong. Please try again!",
+      });
+    }
+    else
+    {
+      let data = {
+        "company_id":this.state.company_id,
+        "firstname":this.state.f_name,
+        "lastname":this.state.l_name,
+        "biography":this.state.bio,
+        "email":this.state.email,
+        "password":this.state.password,
+        "companyname":this.state.companyname,
+        "type":this.state.selectedUserType
+      }
+      console.log("member data",data);
+      let result = await HttpClient.requestData("add-member","POST",data);
+      console.log('result',result);
+      if(result && result.status)
+      {
+        let data = result.data;
+        // reactLocalStorage.setObject('user_data', data);
         this.setState({
-          firstFile: event.target.files[0],
-          selectedFiles: [
-            {
-              preview: URL.createObjectURL(event.target.files[0]),
-            },
+          type: 'success',
+          status: true,
+          title: 'Member Registerd Successfully',
+          phone:"",
+          f_name:"",
+          l_name:"",
+          email:"",
+          date:"",
+          bio:"",
+          password:"",
+          companyname:"",
+          selectedUserType:"",
+          usertypeoption: [
+            // { label: "Select", value: "Select" },
+            { label: "Project Manager", value: "PM" },
+            { label: "Team Member", value: "TM" },
+            { label: "Portfolio Manger", value: "PFM" },
+            { label: "Program Manger", value: "PGM" },
           ],
-        });
-        console.log("selected files", this.state.selectedFiles);
-        setTimeout(() => {
-          console.log("selected files", this.state.firstFile);
-        }, 3000);
-      };
+        //   quote: "You are welcome to Truetask",
+        })
+        // setTimeout(
+        //   () => {
+        //     window.location.href="/home"
+        //   }, 
+        //   3000
+        // );
+      }
+      else
+      {
+        this.setState({
+          type: 'error',
+          status: true,
+          title: result.error,
+          quote: "Something went wrong. Please try again!",
+        })
+      }
+    }
+  }
     render() {
         return (
           <div className="container-fluid">
-            <Breadcomb pageTitle="Add Employee" leadTitle="Employee" />
+            <Breadcomb pageTitle="Add Member" leadTitle="Member" />
             <div className="row">
+            <ReactJsAlert
+          type={this.state.type} // success, warning, error, info
+          title={this.state.title} // title you want to display
+          status={this.state.status} // true or false
+          Close={() => this.setState({ status: false })}
+        />
               <div className="col-12">
                 <div className="card">
                   <div className="card-body">
                     <div className="row">
                       <div className="col-12 col-md-6 col-lg-6 col-xl-6">
                         <div className="form-group">
-                          <label htmlFor="projectname">Name</label>
+                          <label htmlFor="projectname">First Name</label>
                           <input
                             type="text"
                             id="projectname"
                             className="form-control"
-                            placeholder="Enter employee name"
+                            placeholder="Enter member first name"
                             onChange={(val)=>{
-                                this.setState({name:val.target.value})
+                                this.setState({f_name:val.target.value})
                               }}
-                              value={this.state.name}
+                              value={this.state.f_name}
                           />
                         </div>
                         <div className="form-group">
-                          <label htmlFor="project-overview">Phone</label>
+                          <label htmlFor="projectname">Last Name</label>
                           <input
+                            type="text"
+                            id="projectname"
+                            className="form-control"
+                            placeholder="Enter member last name"
+                            onChange={(val)=>{
+                                this.setState({l_name:val.target.value})
+                              }}
+                              value={this.state.l_name}
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="project-overview">Bio</label>
+                          {/* <input
                             type="text"
                             id="projectname"
                             className="form-control"
@@ -70,17 +209,21 @@ export default class index extends Component {
                                 this.setState({phone:val.target.value})
                               }}
                               value={this.state.phone}
-                          />
-                          {/* <textarea
+                          /> */}
+                          <textarea
                             className="form-control"
                             id="project-overview"
                             rows={5}
-                            placeholder="Enter some brief about project.."
+                            placeholder="Enter bio"
                             defaultValue={""}
-                          /> */}
+                            onChange={(val)=>{
+                                this.setState({bio:val.target.value})
+                              }}
+                              value={this.state.bio}
+                          />
                         </div>
                         {/* Date View */}
-                        <div className="form-group">
+                        {/* <div className="form-group">
                           <label>Joining Date</label>
                           <input
                             type="text"
@@ -93,7 +236,7 @@ export default class index extends Component {
                               }}
                               value={this.state.date}
                           />
-                        </div>
+                        </div> */}
                         <div className="form-group">
                           <label htmlFor="project-budget">Email Address</label>
                           <input
@@ -105,6 +248,32 @@ export default class index extends Component {
                                 this.setState({email:val.target.value})
                               }}
                               value={this.state.email}
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="project-budget">Password</label>
+                          <input
+                            type="text"
+                            id="project-budget"
+                            className="form-control"
+                            placeholder="Enter Password"
+                            onChange={(val)=>{
+                                this.setState({password:val.target.value})
+                              }}
+                              value={this.state.password}
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="project-budget">Company Name</label>
+                          <input
+                            type="text"
+                            id="project-budget"
+                            className="form-control"
+                            placeholder="Enter Company Name"
+                            onChange={(val)=>{
+                                this.setState({companyname:val.target.value})
+                              }}
+                              value={this.state.companyname}
                           />
                         </div>
                         {/* <div className="form-group mb-0">
@@ -199,107 +368,31 @@ export default class index extends Component {
                       </div>{" "}
                       {/* end col*/}
                       <div className="col-12 col-md-6 col-lg-6 col-xl-6">
-                            <div className="form-group mt-3 mt-xl-0">
-                              <label htmlFor="projectname" className="mb-0">
-                                Avatar
-                              </label>
-                              <p className="text-muted font-14">
-                                Recommended thumbnail size 800x400 (px).
-                              </p>
-                            </div>
-                            {/* File Upload */}
-                            <form
-                              method="post"
-                              className="dropzone"
-                              id="myAwesomeDropzone"
-                              data-plugin="dropzone"
-                              data-previews-container="#file-previews"
-                              data-upload-preview-template="#uploadPreviewTemplate"
-                            >
-                              <div className="fallback">
-                                <input
-                                  name="file"
-                                  type="file"
-                                  multiple
-                                  onChange={this.onChangeFirst}
-                                />
-                              </div>
-                              <div className="dz-message needsclick">
-                                <i className="h1 text-muted dripicons-cloud-upload" />
-                                <h3>Drop files here or click to upload.</h3>
-                                <span className="text-muted font-13">
-                                  (This is just a demo dropzone. Selected files
-                                  are
-                                  <strong>not</strong> actually uploaded.)
-                                </span>
-                              </div>
-                            </form>
-                            {/* Preview */}
-                            <div
-                              className="dropzone-previews mt-3"
-                              id="file-previews"
-                            />
-                            {/* file preview template */}
-                            {this.state.selectedFiles.length > 0 ? (
-                              <div
-                                className="d-block"
-                                id="uploadPreviewTemplate"
-                              >
-                                <div className="card mt-1 mb-0 shadow-none border">
-                                  <div className="p-2">
-                                    <div className="row align-items-center">
-                                      {this.state.selectedFiles.map(
-                                        (item, index) => {
-                                          return (
-                                            <div className="col-auto">
-                                              <img
-                                                data-dz-thumbnail
-                                                alt={item.name}
-                                                src={item.preview}
-                                                className="avatar-sm rounded bg-light"
-                                                alt="preview"
-                                              />
-                                              <a
-                                                href
-                                                className="text-muted close"
-                                                data-dz-remove
-                                                onClick={() => {
-                                                  this.setState({
-                                                    firstFile: "",
-                                                    selectedFiles: [],
-                                                  });
-                                                }}
-                                              >
-                                                <i className="dripicons-cross" />
-                                              </a>
-                                            </div>
-                                          );
-                                        }
-                                      )}
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            ) : null}
-                            {/* Date View */}
-                            <button
-                            type="button"
-                            className="btn btn-info"
-                            // onClick={() => {
-                            //   this.nextStep();
-                            // }}
-                       >
-                       Submit
-                       </button>
-                          </div>
+                      <div className="form-group">
+                          <label htmlFor="project-budget">Member Type</label>
+                          <Select
+                        name="colors"
+                        options={this.state.usertypeoption}
+                        // value={this.state.selectedProjectType}
+                        onChange={this.handelUserType}
+                        className="basic-multi-select"
+                        classNamePrefix="select"
+                        // onInputChange={this.handelChange}
+                      />
+                        </div>
+                        <button type="button" className="btn btn-success mt-2" onClick={()=>{this.signUp()}}>
+                          <i className="mdi mdi-content-save" /> Submit
+                        </button>
+                      </div>
                           
-                      {/* end col*/}
+                     
                     
                     </div>
                     {/* end row */}
                   </div>{" "}
                   {/* end card-body */}
                 </div>{" "}
+                
                 {/* end card*/}
               </div>{" "}
               {/* end col*/}

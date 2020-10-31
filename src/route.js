@@ -35,6 +35,7 @@ import SubscriptionReport from "./views/subscriptionreport";
 import ManageSubscription from "./views/subscriptionreport/managesubscription";
 import ProfileReport from "./views/profilereport";
 import AddEmployee from "./views/employee/create";
+import ManageEmployee from "./views/employee/view";
 
 
 //Admin Routes
@@ -52,9 +53,14 @@ const routes = [
     component: ManageSubscription,
   },
   {
-    path: "/add-employee",
+    path: "/add-member",
     name: "AddEmployee",
     component: AddEmployee,
+  },
+  {
+    path: "/view-member",
+    name: "ManageEmployee",
+    component: ManageEmployee,
   },
 
   { path: "/faq", name: "Faq", component: Faq },
