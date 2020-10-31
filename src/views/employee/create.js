@@ -195,7 +195,7 @@ export default class index extends Component {
                                     <p className="mb-0" data-dz-size />
                                   </div>
                                   <div className="col-auto">
-                                    {/* Button */}
+                                    {/* Button test */}
                                     <a
                                       href
                                       className="btn btn-link btn-lg text-muted"
