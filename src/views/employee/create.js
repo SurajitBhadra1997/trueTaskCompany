@@ -20,6 +20,7 @@ export default class index extends Component {
              date:"",
              bio:"",
              companyname:"",
+             password:"",
              usertypeoption: [
                 // { label: "Select", value: "Select" },
                 { label: "Project Manager", value: "PM" },
@@ -34,6 +35,7 @@ export default class index extends Component {
               title: "Hey! this is an error.",
               quote: "Something went wrong. Please try again!",
               selectedUserType:"",
+              
         }
     }
     async componentDidMount() 
@@ -45,6 +47,7 @@ export default class index extends Component {
       this.setState({isLogin:true,
         user_data:data,
         company_id:data.id,
+        companyname:data.name
         // lname:data.lastname.charAt(0),
       });
     }
@@ -88,17 +91,23 @@ export default class index extends Component {
     // console.log(projecttypeselect);
     // let data = this.validate();
     // console.log('data',data);
-    if(this.state.companyname =='' && this.state.f_name =='' && this.state.l_name =='' && this.state.email =='' && this.state.password =='')
+    if(this.state.f_name =='' && this.state.l_name =='' && this.state.email =='' && this.state.password=='' && this.state.bio=='' && this.state.selectedUserType=='')
     {
       this.setState({
         type: "warning",
         status: true,
         title: "Please Fillup Basic Details.",
-        quote: "Something went wrong. Please try again!",
+        // quote: "Something went wrong. Please try again!",
       });
     }
     else
     {
+      // this.setState({
+      //   type: "success",
+      //   status: true,
+      //   title: "You hve entered else",
+      //   // quote: "Something went wrong. Please try again!",
+      // });
       let data = {
         "company_id":this.state.company_id,
         "firstname":this.state.f_name,
@@ -274,6 +283,7 @@ export default class index extends Component {
                                 this.setState({companyname:val.target.value})
                               }}
                               value={this.state.companyname}
+                              readOnly
                           />
                         </div>
                         {/* <div className="form-group mb-0">
