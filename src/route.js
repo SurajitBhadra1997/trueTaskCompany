@@ -2,7 +2,7 @@ import React from "react";
 
 // import MyTask from "./views/myTask";
 
-// import Subscription from "./views/subscription";
+import Subscription from "./views/subscription";
 import Profile from "./views/userProfile";
 import EditProfile from "./views/userProfile/editProfile";
 
@@ -66,6 +66,7 @@ const routes = [
   { path: "/faq", name: "Faq", component: Faq },
   { path: "/profile", name: "Profile", component: Profile },
   { path: "/edit-profile", name: "EditProfile", component: EditProfile },
+  { path: "/subscription", name: "Subscription", component: Subscription },
 ];
 
 // const routes = [
@@ -97,7 +98,7 @@ const routes = [
 //     name: "ProjectTimeline",
 //     component: ProjectTimeline,
 //   },
-//   { path: "/subscription", name: "Subscription", component: Subscription },
+ 
 //   {
 //     path: "/project-overview",
 //     name: "ProjectOverview",

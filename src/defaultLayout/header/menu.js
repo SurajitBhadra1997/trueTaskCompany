@@ -199,8 +199,7 @@ export default class menu extends Component {
               })} */}
           {/* </ul> */}
           {/* </li> */}
-          {/* {this.state.type=="PM"?
-          (
+        
           <li className="side-nav-item">
             <NavLink
               activeClassName="active"
@@ -210,7 +209,7 @@ export default class menu extends Component {
               <i className="uil-box" />
               <span> Subscription </span>
             </NavLink>
-          </li>):null} */}
+          </li>
 
           {/* <li className="side-nav-item">
             <NavLink

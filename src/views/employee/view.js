@@ -82,18 +82,47 @@ export default class index extends Component {
   //   data
   // );
 }
+getMySubscriptionStatus = async (id,email,type)=>
+  {
+    let data = {
+     company_id:id,
+      
+    };
+    console.log(data);
+    let result = await HttpClient.requestData("check-companysubscription", "POST", data);
+    console.log("result", result);
+    if (result && result.status&&result.data) {
+      let subscription_status = result.data.status;
+      reactLocalStorage.set("subscription_status", subscription_status);
+       console.log(subscription_status);
+       this.Memberfetch(id);
+    }
+   
+    else{
+      reactLocalStorage.set("subscription_status","N");
+      this.setState({
+        type: "warning",
+        status: true,
+        title: "your dont't have any  subscription plan  please a buy a new one",
+      });
+  
+    }
+    
+
+  }
   getUserdata = async () => {
     let data = reactLocalStorage.getObject("user_data");
         console.log(data);
     if (data && Object.keys(data).length !== 0) {
       this.setState({ isLogin: true, userData: data, userId: data.id });
-      this.Memberfetch(data.id);
+       this.getMySubscriptionStatus( data.id,data.email,data.type);
+     // this.Memberfetch(data.id);
     }
   };
 
  Memberfetch = async (id)=> {
-    const data = {
-        "company_id":id
+   let data = {
+        company_id:id
     };
     console.log("dataaaa",data)
     let result = await HttpClient.requestData(
@@ -269,12 +298,14 @@ export default class index extends Component {
     };
     return (
       <React.Fragment>
+       {reactLocalStorage.get("subscription_status")=="Y"?
+        (
         <div className="content">
           <div className="container-fluid">
             <div className="page-title-box">
               <Breadcrumb pageTitle="Manage Member" />
             </div>
-
+             
             <Row>
               <Col>
                 <Card>
@@ -315,6 +346,9 @@ export default class index extends Component {
             })}
           </div>
         </div>
+          ):(
+         <div style={{alignItems:"center"}}><h3>your dont't have any  subscription plan  please a buy a new one</h3></div>
+       )}
       </React.Fragment>
     );
   }

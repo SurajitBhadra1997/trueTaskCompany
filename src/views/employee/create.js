@@ -40,7 +40,54 @@ export default class index extends Component {
     }
     async componentDidMount() 
   {
-    let data = reactLocalStorage.getObject('user_data');
+     await this.getUserdata();
+  
+  }
+
+   getMySubscriptionStatus = async (id,email,type)=>
+  {
+    let data = {
+     company_id:id,
+      
+    };
+    console.log(data);
+    let result = await HttpClient.requestData("check-companysubscription", "POST", data);
+    console.log("result", result);
+    if (result && result.status&&result.data) {
+      let subscription_status = result.data.status;
+      reactLocalStorage.set("subscription_status", subscription_status);
+       console.log(subscription_status);
+     //this.getMyprojectList(id);
+    }
+    // else
+    // {
+    //   if(type=="PM")
+    //   {
+    //     console.log(type);
+    //     reactLocalStorage.set("subscription_status","N");
+    //   this.setState({
+    //     type: "warning",
+    //     status: true,
+    //     title: "your current subscription pack is over please a buy a new one",
+    //   });
+    
+    // }
+    else{
+      reactLocalStorage.set("subscription_status","N");
+      this.setState({
+        type: "warning",
+        status: true,
+        title: "your dont't have any  subscription plan  please a buy a new one",
+      });
+  
+    }
+    
+
+  }
+   getUserdata = async () => {
+   
+   
+     let data = reactLocalStorage.getObject('user_data');
     console.log(data);
     if(data && Object.keys(data).length !== 0)
     {
@@ -50,6 +97,7 @@ export default class index extends Component {
         companyname:data.name
         // lname:data.lastname.charAt(0),
       });
+        this.getMySubscriptionStatus( data.id,data.email,data.type);
     }
   }
     // onChangeFirst = async (event) => {
@@ -176,6 +224,8 @@ export default class index extends Component {
           status={this.state.status} // true or false
           Close={() => this.setState({ status: false })}
         />
+        {reactLocalStorage.get("subscription_status")=="Y"?
+        (
               <div className="col-12">
                 <div className="card">
                   <div className="card-body">
@@ -404,10 +454,15 @@ export default class index extends Component {
                 </div>{" "}
                 
                 {/* end card*/}
-              </div>{" "}
+              </div>
+        
+        ):(
+         <div style={{alignItems:"center"}}><h3>your dont't have any  subscription plan  please a buy a new one</h3></div>
+       )}
               {/* end col*/}
             </div>
           </div>
+        
         );
     }
 }

@@ -46,7 +46,7 @@ export default class index extends Component {
  {
  
   let data = {
-  email:this.state.email
+  company_id:this.state.userData.id,
   };
 
   setTimeout(() => {
@@ -62,6 +62,7 @@ export default class index extends Component {
        issubscribed:result.isSubscribed,
       });
       console.log(this.state.subscription);
+
     }
     else{
 
@@ -72,7 +73,7 @@ export default class index extends Component {
  subscriptionBuy = async(packprice,packid)=>
  {
   let data = {
-   user_id:this.state.email,
+   company_id:this.state.userData.id,
    price:packprice,
    subscription:packid,
   };
@@ -89,6 +90,7 @@ export default class index extends Component {
      issubscribed:result.isSubscribed,
       
       });
+      reactLocalStorage.set('subscription_status',this.state.issubscribed);
       
       console.log(this.state.subscription);
     }
@@ -160,19 +162,19 @@ export default class index extends Component {
                   
                     <div className="card card-pricing card-pricing-recommended" key={index}>
                       <div className="card-body text-center">
-                        {item.name=="BUSINESS PACK"?
-                        (<div className="card-pricing-plan-tag">Recommended</div>):
-                        null}
+                        {/* {item.name=="BUSINESS PACK"?
+                        (<div className="rcmd_line card-pricing-plan-tag">Recommended</div>):
+                        null} */}
                         <p className="card-pricing-plan-name font-weight-bold text-uppercase">
                          {item.name}
                         </p>
-                         <i className={item.logo} /> 
+                         {/* <i className={item.logo} />  */}
                         
                         <h2 className="card-pricing-price">
-                          ${item.price} <span>/ Month</span>
+                          Rs.{item.price} <span>/{item.no_of_month} Month</span>
                         </h2>
                         <ul className="card-pricing-features">
-                          <li>{item.storage} Storage</li>
+                          {/* <li>{item.storage} Storage</li>
                           <li>{item.bandwidth} Bandwidth</li>
                            <li>{item.domain} Domain</li>
                            {item.user=="0"||item.user=="1"?
@@ -183,7 +185,7 @@ export default class index extends Component {
                              {item.user}users
                            </li>)}
 
-                          <li>Email Support</li>
+                          <li>Email Support</li> */}
                           <li>24x7 Support</li>
                         </ul>
 
@@ -206,7 +208,16 @@ export default class index extends Component {
                               Subscribed
                             </button>:
                             item.buy_status=="N"&&this.state.issubscribed=="Y"?
-                            <button className="btn btn-primary mt-4 mb-2 btn-rounded">
+                            <button className="btn btn-primary mt-4 mb-2 btn-rounded"
+                            onClick={() =>{
+                              this.setState({ isLogin: true, 
+                               type:"warning",
+                               status:true,
+                               title:"You Have a current ongoing plan,you can only choose new plan after it gets over"
+                                });
+                             }}
+                            
+                            >
                                Choose Plan
                             </button>:
                             <button className="btn btn-primary mt-4 mb-2 btn-rounded"
