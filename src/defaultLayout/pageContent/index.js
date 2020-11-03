@@ -153,10 +153,10 @@ export default class index extends Component {
                 </span>
               </a>
               <div className="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
-                {/* <Link to="/profile" className="dropdown-item notify-item">
+                <Link to="/profile" className="dropdown-item notify-item">
                   <i className="mdi mdi-account-circle mr-1" />
                   <span>My Account</span>
-                </Link> */}
+                </Link>
                 <a
                   href="javascript:void(0);"
                   className="dropdown-item notify-item"

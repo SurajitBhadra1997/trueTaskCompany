@@ -34,6 +34,8 @@ export default class index extends Component {
       firstFile:"",
      
       selectedFiles:[],
+      companyname:"",
+      password:""
 };
   }
  
@@ -49,50 +51,52 @@ export default class index extends Component {
          userData: data, 
          userId: data.id,
          email:data.email,
+         companyname:data.name,
+         phone:data.phone
          });
-      this.profileFetch(this.state.email);
+      // this.profileFetch(this.state.email);
 
       
     } else {
       this.setState({ isLogin: false });
     }
   };
-  profileFetch = async (id) => {
-    let data = {
-      email:id,
-    };
-    console.log(data);
-    let result = await HttpClient.requestData("profile-fetch", "POST", data);
-    console.log(result);
-    if (result && result.data) {
-      let image=result.data.image!=null?result.data.image:"";
-     this.setState({
-       profiledata:result.data,
-       fname:result.data.firstname.charAt(0),
-       lname:result.data.lastname.charAt(0),
-       firstname:result.data.firstname,
-       lastname:result.data.lastname,
-       phone:result.data.phone,
-       address:result.data.address,
-       email_address:result.data.email,
-       city:result.data.city!=null?result.data.city:"",
+  // profileFetch = async (id) => {
+  //   let data = {
+  //     email:id,
+  //   };
+  //   console.log(data);
+  //   let result = await HttpClient.requestData("profile-fetch", "POST", data);
+  //   console.log(result);
+  //   if (result && result.data) {
+  //     let image=result.data.image!=null?result.data.image:"";
+  //    this.setState({
+  //      profiledata:result.data,
+  //      fname:result.data.firstname.charAt(0),
+  //      lname:result.data.lastname.charAt(0),
+  //      firstname:result.data.firstname,
+  //      lastname:result.data.lastname,
+  //      phone:result.data.phone,
+  //      address:result.data.address,
+  //      email_address:result.data.email,
+  //      city:result.data.city!=null?result.data.city:"",
 
-       country:result.data.country!=null?result.data.country:"",
-       postal_code:result.data.postal_code!=null?result.data.postal_code:"",
-       about_me:result.data.biography,
-       selectedFiles:
-       image != ""
-         ? [
-             {
-               preview: this.state.img_url + image,
-             },
-           ]
-         : [],
-     });
-     console.log(this.state.fname);
-     console.log(this.state.lname);
-    }
-  };
+  //      country:result.data.country!=null?result.data.country:"",
+  //      postal_code:result.data.postal_code!=null?result.data.postal_code:"",
+  //      about_me:result.data.biography,
+  //      selectedFiles:
+  //      image != ""
+  //        ? [
+  //            {
+  //              preview: this.state.img_url + image,
+  //            },
+  //          ]
+  //        : [],
+  //    });
+  //    console.log(this.state.fname);
+  //    console.log(this.state.lname);
+  //   }
+  // };
 
   validation = (async) => {
     
@@ -156,49 +160,80 @@ export default class index extends Component {
 
   profileUpdate = async ()=>
   {
-    let validation = this.validation();
-    console.log(validation);
-    if (validation) {
-    let data = {
-      id:this.state.userId,
-      firstname:this.state.firstname,
-      lastname:this.state.lastname,
-      phone:this.state.phone,
-      address:this.state.address,
-      city:this.state.city,
-      country:this.state.country,
-      postal_code:this.state.postal_code,
-      biography:this.state.about_me,
-      email:this.state.email_address,
-    };
-    console.log(data);
-    let result = await HttpClient.requestData("profile-update", "POST", data);
-    console.log(result);
-    if (result && result.data) {
-      this.setState({
-       type:"success",
-       title:"profile has been updated successfully",
-       status:true,
- 
-      });
-      this.getUserdata();
-      reactLocalStorage.setObject('user_data',result.data);
-     }
-     else{
-      this.setState({
-        type:"error",
-        title:"something went wrong",
-        status:true,
-  
-       });
-     }
-    }
-    else {
+    var pattern = new RegExp(
+      /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+    );
+    if(this.state.password=='')
+    {
+      // alert("true")
       this.setState({
         type: "warning",
         status: true,
-        quote: "Something went wrong. Please try again!",
+        title: "Please Enter Password",
+        // quote: "Something went wrong. Please try again!",
       });
+    }
+    // else{
+    //   alert("you have entered else");
+    // }
+    else if(!pattern.test(this.state.email)){
+      this.setState({
+        type: "warning",
+        status: true,
+        title: "Please Enter Valid Email",
+        // quote: "Something went wrong. Please try again!",
+      });
+    }
+    else if(this.state.companyname==''){
+      this.setState({
+        type: "warning",
+        status: true,
+        title: "Please Enter Company Name",
+        // quote: "Something went wrong. Please try again!",
+      });
+    }
+    else
+    {
+      let data = {
+
+        "name":this.state.companyname,
+        "email":this.state.email,
+        "phone":this.state.phone,
+        "password":this.state.password,
+      }
+     console.log("dataaaaa",data);
+      let result = await HttpClient.requestData("edit-profile","POST",data);
+      console.log('result',result);
+      if(result && result.status)
+      {
+        let data = result.data;
+       
+        reactLocalStorage.setObject('user_data', data);
+        this.getUserdata();
+       
+        this.setState({
+          type: 'success',
+          status: true,
+          title: 'Profile Updated Successfully',
+          // quote: "You are welcome to Truetask",
+        })
+  
+        // setTimeout(
+        //   () => {
+        //     window.location.href="/home"
+        //   }, 
+        //   3000
+        // );
+      }
+      else
+      {
+        this.setState({
+          type: 'error',
+          status: true,
+          title: result.error,
+          quote: "Something went wrong. Please try again!",
+        })
+      }
     }
 
   }
@@ -303,9 +338,9 @@ export default class index extends Component {
                         alt="..."
                       />
                      
-                      <h5 className="title">{this.state.profiledata.firstname +" "+this.state.profiledata.lastname}</h5>
+                      <h5 className="title">{this.state.companyname}</h5>
                     </a>
-                      <p className="description">{this.state.profiledata.type=="PM"?"Project Manager":"Team Member"}</p>
+                      {/* <p className="description">{this.state.profiledata.type=="PM"?"Project Manager":"Team Member"}</p> */}
                   </div>):
                   ( <div
                    className="author"
@@ -324,9 +359,9 @@ export default class index extends Component {
                     >
                   </img>
                     
-                      <h5 className="title">{this.state.profiledata.firstname +" "+this.state.profiledata.lastname}</h5>
+                      <h5 className="title">{this.state.companyname}</h5>
                      </a>
-                     <p className="description">{this.state.profiledata.type=="PM"?"Project Manager":"Team Member"}</p>
+                     {/* <p className="description">{this.state.profiledata.type=="PM"?"Project Manager":"Team Member"}</p> */}
                    </div>)}
                 </div>
                 <div className="card-footer">
@@ -439,44 +474,24 @@ export default class index extends Component {
                     <div className="row">
                       <div className="col-md-6 pr-1">
                         <div className="form-group">
-                <label>First Name</label>
+                          <label>Company Name</label>
                           <input
                             type="text"
                             className="form-control"
                             placeholder="Company"
                             //defaultValue="Chet"
-                            value={this.state.firstname}
+                            value={this.state.companyname}
                             onChange={(val) => {
                               this.setState({
-                                firstname: val.target.value,
+                                companyname: val.target.value,
                               });
                             }}
                           />
                         </div>
                       </div>
                       <div className="col-md-6 pl-1">
-                        <div className="form-group">
-                          <label>Last Name</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Last Name"
-                            //defaultValue="Faker"
-                            value={this.state.lastname}
-                            onChange={(val) => {
-                              this.setState({
-                                lastname: val.target.value,
-                              });
-                            }}
-                            
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6 px-1">
-                        <div className="form-group">
-                          <label>Phone number</label>
+                      <div className="form-group">
+                          <label>Company Phone</label>
                           <input
                             type="number"
                             className="form-control"
@@ -492,8 +507,10 @@ export default class index extends Component {
                           />
                         </div>
                       </div>
-                      <div className="col-md-6 pl-1">
-                        <div className="form-group">
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6 px-1">
+                      <div className="form-group">
                           <label htmlFor="exampleInputEmail1">
                             Email address
                           </label>
@@ -501,17 +518,35 @@ export default class index extends Component {
                             type="email"
                             className="form-control"
                             placeholder="Email"
-                            value={this.state.email_address}
+                            value={this.state.email}
                             onChange={(val) => {
                               this.setState({
-                                email_address: val.target.value,
+                                email: val.target.value,
+                              });
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-6 pl-1">
+                        <div className="form-group">
+                          <label htmlFor="exampleInputEmail1">
+                            Password
+                          </label>
+                          <input
+                            type="email"
+                            className="form-control"
+                            placeholder="Password"
+                            value={this.state.password}
+                            onChange={(val) => {
+                              this.setState({
+                                password: val.target.value,
                               });
                             }}
                           />
                         </div>
                       </div>
                     </div>
-                    <div className="row">
+                    {/* <div className="row">
                       <div className="col-md-12">
                         <div className="form-group">
                           <label>Address</label>
@@ -529,8 +564,8 @@ export default class index extends Component {
                           />
                         </div>
                       </div>
-                    </div>
-                    <div className="row">
+                    </div> */}
+                    {/* <div className="row">
                       <div className="col-md-4 pr-1">
                         <div className="form-group">
                           <label>City</label>
@@ -602,7 +637,7 @@ export default class index extends Component {
                           />
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="row">
                       <div className="update ml-auto mr-auto">
                         <button

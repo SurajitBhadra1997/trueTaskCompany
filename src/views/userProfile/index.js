@@ -18,6 +18,8 @@ export default class index extends Component {
       fname:"",
       lname:"",
       email:"",
+      companyname:"",
+      phone:""
      
     };
   }
@@ -34,8 +36,11 @@ export default class index extends Component {
          userData: data, 
          userId: data.id,
          email:data.email,
+         companyname:data.name,
+         phone:data.phone,
+         email:data.email
          });
-      this.profileFetch();
+      // this.profileFetch();
       
     } else {
       this.setState({ isLogin: false });
@@ -66,7 +71,7 @@ export default class index extends Component {
     return (
       <div className="container-fluid">
         {/* start page title */}
-        <Breadcomb pageTitle="User Profile" />
+        <Breadcomb pageTitle="Company Profile" />
         <div className="row">
           <div className="col-sm-12">
             {/* Profile */}
@@ -95,11 +100,11 @@ export default class index extends Component {
                       </span>
                       <div className="media-body">
                         <h4 className="mt-1 mb-1 text-white">
-                          {this.state.profiledata.firstname+" "+this.state.profiledata.lastname}
+                          {this.state.companyname}
                         </h4>
-                        <p className="font-13 text-white-50">
+                        {/* <p className="font-13 text-white-50">
                          {this.state.profiledata.type=="PM"?"Project Manager":"Team Member"}
-                        </p>
+                        </p> */}
                         <ul className="mb-0 list-inline text-light">
                           <li className="list-inline-item mr-3">
                             <h5 className="mb-1">$ 25,184</h5>
@@ -152,33 +157,33 @@ export default class index extends Component {
             <div className="card">
               <div className="card-body">
                 <h4 className="header-title mt-0 mb-3">Personal Information</h4>
-                <p className="text-muted font-13">
+                {/* <p className="text-muted font-13">
                   {this.state.profiledata.biography!=""||this.state.profiledata.biography!=null?this.state.profiledata.biography:"No Personal Information Available"}
-                </p>
+                </p> */}
                 <hr />
                 <div className="text-left">
                   <p className="text-muted">
-                    <strong>Full Name :</strong>
+                    <strong>Company Name :</strong>
                     <span className="ml-2"> 
-                    {this.state.profiledata.firstname+" "+this.state.profiledata.lastname}</span>
+                    {this.state.companyname}</span>
                   </p>
                   <p className="text-muted">
                     <strong>Mobile :</strong>
-    <span className="ml-2">{this.state.profiledata.phone}</span>
+    <span className="ml-2">{this.state.phone}</span>
                   </p>
                   <p className="text-muted">
                     <strong>Email :</strong>
-    <span className="ml-2">{this.state.profiledata.email}</span>
+    <span className="ml-2">{this.state.email}</span>
                   </p>
-                  <p className="text-muted">
+                  {/* <p className="text-muted">
                     <strong>Location :</strong>
     <span className="ml-2">{this.state.profiledata.address},{this.state.profiledata.city},{this.state.profiledata.country}</span>
                   </p>
                   <p className="text-muted">
                     <strong>Languages :</strong>
                     <span className="ml-2"> English, German, Spanish </span>
-                  </p>
-                  <p className="text-muted mb-0">
+                  </p> */}
+                  {/* <p className="text-muted mb-0">
                     <strong>Elsewhere :</strong>
                     <a
                       className="d-inline-block ml-2 text-muted"
@@ -210,7 +215,7 @@ export default class index extends Component {
                     >
                       <i className="mdi mdi-skype" />
                     </a>
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </div>

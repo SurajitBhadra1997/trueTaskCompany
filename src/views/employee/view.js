@@ -126,7 +126,7 @@ getMySubscriptionStatus = async (id,email,type)=>
     };
     console.log("dataaaa",data)
     let result = await HttpClient.requestData(
-      "view-employee",
+      "view-member",
       "POST",
       data
     );
