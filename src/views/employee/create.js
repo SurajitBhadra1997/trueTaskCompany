@@ -59,25 +59,13 @@ export default class index extends Component {
        console.log(subscription_status);
      //this.getMyprojectList(id);
     }
-    // else
-    // {
-    //   if(type=="PM")
-    //   {
-    //     console.log(type);
-    //     reactLocalStorage.set("subscription_status","N");
-    //   this.setState({
-    //     type: "warning",
-    //     status: true,
-    //     title: "your current subscription pack is over please a buy a new one",
-    //   });
-    
-    // }
+   
     else{
       reactLocalStorage.set("subscription_status","N");
       this.setState({
         type: "warning",
         status: true,
-        title: "your dont't have any  subscription plan  please a buy a new one",
+        title: "you dont't have any  subscription plan  please a buy a new one",
       });
   
     }
