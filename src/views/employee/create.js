@@ -35,6 +35,7 @@ export default class index extends Component {
               title: "Hey! this is an error.",
               quote: "Something went wrong. Please try again!",
               selectedUserType:"",
+              msg:"",
               
         }
     }
@@ -43,7 +44,33 @@ export default class index extends Component {
      await this.getUserdata();
   
   }
-
+  validate() {
+    if (this.state.email == "") {
+      this.setState({
+        title: "Please Enter email.",
+      });
+      return false;
+    } else {
+      var pattern = new RegExp(
+        /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+      );
+      if (!pattern.test(this.state.email)) {
+        this.setState({
+          title: "Please Enter valid email.",
+        });
+        return false;
+      } else {
+        if (this.state.password == "") {
+          this.setState({
+            title: "Please Enter password.",
+          });
+          return false;
+        } else {
+          return true;
+        }
+      }
+    }
+  }
    getMySubscriptionStatus = async (id,email,type)=>
   {
     let data = {
@@ -57,6 +84,9 @@ export default class index extends Component {
       let subscription_status = result.data.status;
       reactLocalStorage.set("subscription_status", subscription_status);
        console.log(subscription_status);
+       this.setState({
+         msg:"",
+       });
      //this.getMyprojectList(id);
     }
    
@@ -65,7 +95,8 @@ export default class index extends Component {
       this.setState({
         type: "warning",
         status: true,
-        title: "you dont't have any  subscription plan  please a buy a new one",
+        title: "You dont't have any active subscription plan please buy a new one",
+        msg:"You dont't have any active subscription plan please buy a new one",
       });
   
     }
@@ -127,12 +158,24 @@ export default class index extends Component {
     // console.log(projecttypeselect);
     // let data = this.validate();
     // console.log('data',data);
+    // let validation = this.validate();
+    var pattern = new RegExp(
+      /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+    );
     if(this.state.f_name =='' && this.state.l_name =='' && this.state.email =='' && this.state.password=='' && this.state.bio=='' && this.state.selectedUserType=='')
     {
       this.setState({
         type: "warning",
         status: true,
         title: "Please Fillup Basic Details.",
+        // quote: "Something went wrong. Please try again!",
+      });
+    }
+    else if(!pattern.test(this.state.email)){
+      this.setState({
+        type: "warning",
+        status: true,
+        title: "Please Enter Valid Email",
         // quote: "Something went wrong. Please try again!",
       });
     }
@@ -445,7 +488,7 @@ export default class index extends Component {
               </div>
         
         ):(
-         <div style={{alignItems:"center"}}><h3>your dont't have any  subscription plan  please a buy a new one</h3></div>
+        <div style={{alignItems:"center"}}><h3>{this.state.msg}</h3></div>
        )}
               {/* end col*/}
             </div>
