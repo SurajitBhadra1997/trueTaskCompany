@@ -3331,6 +3331,7 @@ selectHolidayFile= async(event) =>
                                 });
                               }}
                               value={this.state.projectName}
+                              disabled
                             />
                           </div>
                           <div className="form-group">
@@ -3346,6 +3347,7 @@ selectHolidayFile= async(event) =>
                                 });
                               }}
                               value={this.state.projectOverview}
+                              disabled
                             />
                           </div>
                           {/* Date View */}
@@ -3361,6 +3363,7 @@ selectHolidayFile= async(event) =>
                                 this.setState({ startDate: val.target.value });
                               }}
                               value={this.state.startDate}
+                              disabled
                             />
                           </div>
                           <div className="form-group">
@@ -3375,6 +3378,7 @@ selectHolidayFile= async(event) =>
                                 this.setState({ dueDate: val.target.value });
                               }}
                               value={this.state.dueDate}
+                              disabled
                             />
                           </div>
                           <div className="form-group">
@@ -3389,6 +3393,7 @@ selectHolidayFile= async(event) =>
                                 this.setState({ budget: val.target.value });
                               }}
                               value={this.state.budget}
+                              disabled
                             />
                           </div>
                            {/* <div className="form-group mb-0">
@@ -3514,6 +3519,7 @@ selectHolidayFile= async(event) =>
                               className="basic-multi-select"
                               classNamePrefix="select"
                               // onInputChange={this.handelChange}
+                              isDisabled
                             />
                             </div>
                         </div>
@@ -3542,6 +3548,7 @@ selectHolidayFile= async(event) =>
                                 type="file"
                                 multiple
                                 onChange={this.onChangeFirst}
+                                disabled
                               />
                             </div>
                             <div className="dz-message needsclick">
@@ -3634,6 +3641,7 @@ selectHolidayFile= async(event) =>
                                   });
                                 }}
                                 value={this.state.businessNeed}
+                                disabled
                               />
                             </div>
                           </div>
@@ -3657,6 +3665,7 @@ selectHolidayFile= async(event) =>
                                   console.log(val.target.value);
                                 }}
                                 value={this.state.objectives}
+                                disabled
                               />
                             </div>
                           </div>
@@ -3681,6 +3690,7 @@ selectHolidayFile= async(event) =>
                                   this.setState({ inScope: val.target.value });
                                 }}
                                 value={this.state.inScope}
+                                disabled
                               />
                             </div>
                             <label
@@ -3702,6 +3712,7 @@ selectHolidayFile= async(event) =>
                                   });
                                 }}
                                 value={this.state.outOfScope}
+                                disabled
                               />
                             </div>
                           </div>
@@ -3728,6 +3739,7 @@ selectHolidayFile= async(event) =>
                                   });
                                 }}
                                 value={this.state.deliverable}
+                                disabled
                               />
                             </div>
                             <label
@@ -3749,6 +3761,7 @@ selectHolidayFile= async(event) =>
                                   });
                                 }}
                                 value={this.state.dueDateOverview}
+                                disabled
                               />
                             </div>
                           </div>
@@ -3771,6 +3784,7 @@ selectHolidayFile= async(event) =>
                                   });
                                 }}
                                 value={this.state.keyConsiderations}
+                                disabled
                               />
                             </div>
                           </div>
@@ -3793,6 +3807,7 @@ selectHolidayFile= async(event) =>
                                   });
                                 }}
                                 value={this.state.successCriteria}
+                                disabled
                               />
                             </div>
                           </div>
@@ -3886,6 +3901,7 @@ selectHolidayFile= async(event) =>
                                  onChange={
                                  this.handleSelectCountry}
                                value={this.state.country}
+                               disabled
                                    >
                                    
                                     
@@ -3976,23 +3992,25 @@ selectHolidayFile= async(event) =>
                                 ref={this.reactTags}
 
                                 placeholderText="Add new query..."
-                                onInput={query => {
-                                  // this.state.projectstatus=
-                                  // val.target.value;
-                                    //alert( val.target.value);
+                                // onInput={query => {
+                                //   // this.state.projectstatus=
+                                //   // val.target.value;
+                                //     //alert( val.target.value);
                                     
-                                    let dom={
-                                     id:this.state.suggestions.length+1,name:query
-                                    };
-                                    console.log(dom);
-                                    this.state.suggestions.push(dom);
+                                //     let dom={
+                                //      id:this.state.suggestions.length+1,name:query
+                                //     };
+                                //     console.log(dom);
+                                //     this.state.suggestions.push(dom);
                                    
-                                  this.setState({});
-                                }}
+                                //   this.setState({});
+                                // }}
                                 tags={this.state.tags}
-                               suggestions={this.state.suggestions}
-                                onDelete={this.onDelete.bind(this)}
-                               onAddition={this.onAddition.bind(this)} />
+                              // suggestions={this.state.suggestions}
+                               // onDelete={this.onDelete.bind(this)}
+                               onAddition={this.onAddition.bind(this)} 
+                              
+                               />
                             </div>
                           </div>
                           <div className="form-group row mb-3">
@@ -4006,23 +4024,25 @@ selectHolidayFile= async(event) =>
                             <ReactTags
                                 ref={this.reactTags}
                                 placeholderText="Add new query..."
-                                onInput={query => {
-                                  // this.state.projectstatus=
-                                  //   val.target.value;
-                                    //alert( val.target.value);
+                                // onInput={query => {
+                                //   // this.state.projectstatus=
+                                //   //   val.target.value;
+                                //     //alert( val.target.value);
                                     
-                                    let dom={
-                                     id:this.state.suggestions1.length+1,name:query
-                                    };
-                                    console.log(dom);
-                                    this.state.suggestions1.push(dom);
+                                //     let dom={
+                                //      id:this.state.suggestions1.length+1,name:query
+                                //     };
+                                //     console.log(dom);
+                                //     this.state.suggestions1.push(dom);
                                    
-                                  this.setState({});
-                                }}
+                                //   this.setState({});
+                                // }}
                                 tags={this.state.tags1}
-                               suggestions={this.state.suggestions1}
-                                onDelete={this.onDelete1.bind(this)}
-                               onAddition={this.onAddition1.bind(this)} />
+                              //  suggestions={this.state.suggestions1}
+                              //   onDelete={this.onDelete1.bind(this)}
+                              //  onAddition={this.onAddition1.bind(this)} 
+                               
+                               />
                             </div>
                           </div>
                           <div className="form-group row mb-3">
@@ -4036,23 +4056,25 @@ selectHolidayFile= async(event) =>
                             <ReactTags
                                 ref={this.reactTags}
                                 placeholderText="Add new query..."
-                                onInput={query => {
-                                  // this.state.projectstatus=
-                                  //   val.target.value;
-                                    //alert( val.target.value);
+                                // onInput={query => {
+                                //   // this.state.projectstatus=
+                                //   //   val.target.value;
+                                //     //alert( val.target.value);
                                    
-                                    let dom={
-                                     id:this.state.suggestions2.length+1,name:query
-                                    };
-                                    console.log(dom);
-                                    this.state.suggestions2.push(dom);
+                                //     let dom={
+                                //      id:this.state.suggestions2.length+1,name:query
+                                //     };
+                                //     console.log(dom);
+                                //     this.state.suggestions2.push(dom);
                                    
-                                  this.setState({});
-                                }}
+                                //   this.setState({});
+                                // }}
                                 tags={this.state.tags2}
-                               suggestions={this.state.suggestions2}
-                                onDelete={this.onDelete2.bind(this)}
-                               onAddition={this.onAddition2.bind(this)} />
+                              //  suggestions={this.state.suggestions2}
+                              //   onDelete={this.onDelete2.bind(this)}
+                              //  onAddition={this.onAddition2.bind(this)}
+                               
+                                />
                             </div>
                           </div>
                           <div className="form-group row mb-3">
@@ -4066,23 +4088,24 @@ selectHolidayFile= async(event) =>
                             <ReactTags
                                 ref={this.reactTags}
                                 placeholderText="Add new query..."
-                                onInput={query => {
-                                  // this.state.projectstatus=
-                                  //   val.target.value;
-                                    //alert( val.target.value);
+                                // onInput={query => {
+                                //   // this.state.projectstatus=
+                                //   //   val.target.value;
+                                //     //alert( val.target.value);
                                    
-                                    let dom={
-                                     id:this.state.suggestions3.length+1,name:query
-                                    };
-                                    console.log(dom);
-                                    this.state.suggestions3.push(dom);
+                                //     let dom={
+                                //      id:this.state.suggestions3.length+1,name:query
+                                //     };
+                                //     console.log(dom);
+                                //     this.state.suggestions3.push(dom);
                                    
-                                  this.setState({});
-                                }}
+                                //   this.setState({});
+                                // }}
                                 tags={this.state.tags3}
-                               suggestions={this.state.suggestions3}
-                                onDelete={this.onDelete3.bind(this)}
-                               onAddition={this.onAddition3.bind(this)} />
+                              //  suggestions={this.state.suggestions3}
+                              //   onDelete={this.onDelete3.bind(this)}
+                              //  onAddition={this.onAddition3.bind(this)} 
+                               />
                             </div>
                           </div>
                           <div className="form-group row mb-3">
@@ -4102,6 +4125,7 @@ selectHolidayFile= async(event) =>
                                   
                                 }}
                                value={this.state.sprint}
+                               disabled
                                    >
                                    
                                     
@@ -4131,7 +4155,7 @@ selectHolidayFile= async(event) =>
                                     mileStone: val.target.value,
                                   });
                                 }}
-                               
+                               disabled
                               />
                             </div>
                           </div>
@@ -4147,23 +4171,24 @@ selectHolidayFile= async(event) =>
                             <ReactTags
                                 ref={this.reactTags}
                                 placeholderText="Add new query..."
-                                onInput={query => {
-                                  // this.state.projectstatus=
-                                  //   val.target.value;
-                                    //alert( val.target.value);
+                                // onInput={query => {
+                                //   // this.state.projectstatus=
+                                //   //   val.target.value;
+                                //     //alert( val.target.value);
                                    
-                                    let dom={
-                                     id:this.state.suggestions4.length+1,name:query
-                                    };
-                                    console.log(dom);
-                                    this.state.suggestions4.push(dom);
+                                //     let dom={
+                                //      id:this.state.suggestions4.length+1,name:query
+                                //     };
+                                //     console.log(dom);
+                                //     this.state.suggestions4.push(dom);
                                    
-                                  this.setState({});
-                                }}
+                                //   this.setState({});
+                                // }}
                                 tags={this.state.tags4}
-                               suggestions={this.state.suggestions4}
-                                onDelete={this.onDelete4.bind(this)}
-                               onAddition={this.onAddition4.bind(this)} />
+                              //  suggestions={this.state.suggestions4}
+                              //   onDelete={this.onDelete4.bind(this)}
+                              //  onAddition={this.onAddition4.bind(this)}
+                                />
 
                             </div>
                           </div>
@@ -4178,23 +4203,24 @@ selectHolidayFile= async(event) =>
                             <ReactTags
                                 ref={this.reactTags}
                                 placeholderText="Add new query..."
-                                onInput={query => {
-                                  // this.state.projectstatus=
-                                  //   val.target.value;
-                                    //alert( val.target.value);
+                                // onInput={query => {
+                                //   // this.state.projectstatus=
+                                //   //   val.target.value;
+                                //     //alert( val.target.value);
                                    
-                                    let dom={
-                                     id:this.state.suggestions5.length+1,name:query
-                                    };
-                                    console.log(dom);
-                                    this.state.suggestions5.push(dom);
+                                //     let dom={
+                                //      id:this.state.suggestions5.length+1,name:query
+                                //     };
+                                //     console.log(dom);
+                                //     this.state.suggestions5.push(dom);
                                    
-                                  this.setState({});
-                                }}
+                                //   this.setState({});
+                                // }}
                                 tags={this.state.tags5}
-                               suggestions={this.state.suggestions5}
-                                onDelete={this.onDelete5.bind(this)}
-                               onAddition={this.onAddition5.bind(this)} />
+                              //  suggestions={this.state.suggestions5}
+                              //   onDelete={this.onDelete5.bind(this)}
+                              //  onAddition={this.onAddition5.bind(this)}
+                                />
                             </div>
                           </div>
                           <div className="form-group row mb-3">
@@ -4208,23 +4234,24 @@ selectHolidayFile= async(event) =>
                             <ReactTags
                                 ref={this.reactTags}
                                 placeholderText="Add new query..."
-                                onInput={query => {
-                                  // this.state.projectstatus=
-                                  //   val.target.value;
-                                    //alert( val.target.value);
+                                // onInput={query => {
+                                //   // this.state.projectstatus=
+                                //   //   val.target.value;
+                                //     //alert( val.target.value);
                                   
-                                    let dom={
-                                     id:this.state.suggestions6.length+1,name:query
-                                    };
-                                    console.log(dom);
-                                    this.state.suggestions6.push(dom);
+                                //     let dom={
+                                //      id:this.state.suggestions6.length+1,name:query
+                                //     };
+                                //     console.log(dom);
+                                //     this.state.suggestions6.push(dom);
                                    
-                                  this.setState({});
-                                }}
+                                //   this.setState({});
+                                // }}
                                 tags={this.state.tags6}
-                               suggestions={this.state.suggestions6}
-                                onDelete={this.onDelete6.bind(this)}
-                               onAddition={this.onAddition6.bind(this)} />
+                              //  suggestions={this.state.suggestions6}
+                              //   onDelete={this.onDelete6.bind(this)}
+                              //  onAddition={this.onAddition6.bind(this)} 
+                               />
                             </div>
                           </div>
                           <div className="form-group row mb-3">
@@ -4238,23 +4265,24 @@ selectHolidayFile= async(event) =>
                             <ReactTags
                                 ref={this.reactTags}
                                 placeholderText="Add new query..."
-                                onInput={query => {
-                                  // this.state.projectstatus=
-                                  //   val.target.value;
-                                    //alert( val.target.value);
+                                // onInput={query => {
+                                //   // this.state.projectstatus=
+                                //   //   val.target.value;
+                                //     //alert( val.target.value);
                                    
-                                    let dom={
-                                     id:this.state.suggestions7.length+1,name:query
-                                    };
-                                    console.log(dom);
-                                    this.state.suggestions7.push(dom);
+                                //     let dom={
+                                //      id:this.state.suggestions7.length+1,name:query
+                                //     };
+                                //     console.log(dom);
+                                //     this.state.suggestions7.push(dom);
                                    
-                                  this.setState({});
-                                }}
+                                //   this.setState({});
+                                // }}
                                 tags={this.state.tags7}
-                               suggestions={this.state.suggestions7}
-                                onDelete={this.onDelete7.bind(this)}
-                               onAddition={this.onAddition7.bind(this)} />
+                              //  suggestions={this.state.suggestions7}
+                              //   onDelete={this.onDelete7.bind(this)}
+                              //  onAddition={this.onAddition7.bind(this)}
+                                />
                             </div>
                           </div>
                           <div className="form-group row mb-3">
@@ -4280,6 +4308,7 @@ selectHolidayFile= async(event) =>
                                 type="file"
                               
                                 onChange={this.selectHolidayFile}
+                                disabled
                               />
                            
                             {/* <div className="dz-message needsclick">
@@ -4345,22 +4374,22 @@ selectHolidayFile= async(event) =>
                             </label>
                             <div className="col-md-9">
                       <label>Sunday</label>
-                      <input type="checkbox" id="chk1"className="chk11" checked={ this.state.sundaySelected } onChange={ this.selectSunday } />
+                      <input type="checkbox" id="chk1"className="chk11" checked={ this.state.sundaySelected } onChange={ this.selectSunday } disabled/>
                         &nbsp;&nbsp; 
                       <label>Monday</label>
-                       <input type="checkbox" id="chk2" className="chk22" checked={ this.state.mondaySelected } onChange={ this.selectMonday } />
+                       <input type="checkbox" id="chk2" className="chk22" checked={ this.state.mondaySelected } onChange={ this.selectMonday }disabled />
                          &nbsp;&nbsp;  
                        <label>Tuesday</label>
-                       <input type="checkbox" id="chk2" className="chk22" checked={ this.state.tuesdaySelected } onChange={ this.selectTuesday } />
+                       <input type="checkbox" id="chk2" className="chk22" checked={ this.state.tuesdaySelected } onChange={ this.selectTuesday } disabled/>
                     &nbsp;&nbsp;   <label>Wednesday</label>
-                   <input type="checkbox" id="chk1"className="chk11" checked={ this.state.wednesdaySelected } onChange={ this.selectWednesday } />
+                   <input type="checkbox" id="chk1"className="chk11" checked={ this.state.wednesdaySelected } onChange={ this.selectWednesday } disabled />
           
                          &nbsp;&nbsp;   <label>Thrusday</label>
-                      <input type="checkbox" id="chk1"className="chk11" checked={ this.state.thrusdaySelected } onChange={ this.selectThrusday } />
+                      <input type="checkbox" id="chk1"className="chk11" checked={ this.state.thrusdaySelected } onChange={ this.selectThrusday } disabled />
                       &nbsp;&nbsp;   <label>Friday</label>
-                      <input type="checkbox" id="chk1"className="chk11" checked={ this.state.fridaySelected } onChange={this.selectFriday } />
+                      <input type="checkbox" id="chk1"className="chk11" checked={ this.state.fridaySelected } onChange={this.selectFriday } disabled />
                    &nbsp;&nbsp;  <label>Saturday</label>
-                   <input type="checkbox" id="chk1"className="chk11" checked={ this.state.saturdaySelected } onChange={ this.selectSaturday } />
+                   <input type="checkbox" id="chk1"className="chk11" checked={ this.state.saturdaySelected } onChange={ this.selectSaturday } disabled />
      
                    </div>
                           </div>
@@ -4390,6 +4419,7 @@ selectHolidayFile= async(event) =>
                               // onInputChange={this.handelChange}
                             /> */}
                              <ReactTags
+                             isDisabled
                                 ref={this.reactTags}
 
                                 placeholderText="Add new query..."
@@ -4440,6 +4470,7 @@ selectHolidayFile= async(event) =>
                                 }}
                                 
                               }
+                              disabled
                               />
 
                             </div>
@@ -4463,6 +4494,7 @@ selectHolidayFile= async(event) =>
                                   
                                 }}
                                value={this.state.notify}
+                               disabled
                                    >
                                    
                                     
@@ -4493,7 +4525,7 @@ selectHolidayFile= async(event) =>
                                     frequency: val.target.value,
                                   });
                                 }}
-                               
+                               disabled
                               />
                             </div>
                           </div>
@@ -4551,6 +4583,7 @@ selectHolidayFile= async(event) =>
                                   <td>{index + 1}</td>
                                   <td>
                                     <input
+                                    disabled
                                       type="text"
                                       id="name"
                                       name="name"
@@ -4570,6 +4603,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="text"
                                       id="surname"
                                       name="surname"
@@ -4585,6 +4619,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="text"
                                       id="name"
                                       name="name"
@@ -4602,6 +4637,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="text"
                                       id="surname"
                                       name="surname"
@@ -4620,6 +4656,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="text"
                                       id="name"
                                       name="name"
@@ -4639,6 +4676,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="text"
                                       id="surname"
                                       name="surname"
@@ -4656,6 +4694,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="text"
                                       id="email"
                                       name="email"
@@ -4751,6 +4790,7 @@ selectHolidayFile= async(event) =>
                                       <td>{index + 1}</td>
                                       <td>
                                         <input
+                                        disabled
                                           type="text"
                                           id="name"
                                           name="name"
@@ -4768,6 +4808,7 @@ selectHolidayFile= async(event) =>
                                       </td>
                                       <td>
                                         <input
+                                        disabled
                                           type="text"
                                           id="surname"
                                           name="surname"
@@ -4785,6 +4826,7 @@ selectHolidayFile= async(event) =>
                                       </td>
                                       <td>
                                         <input
+                                        disabled
                                           type="date"
                                           className="form-control date"
                                           id="birthdatepicker"
@@ -4956,6 +4998,7 @@ selectHolidayFile= async(event) =>
                                   <td>{index + 1}</td>
                                   <td>
                                     <input
+                                    disabled
                                       type="text"
                                       id="name"
                                       name="name"
@@ -4973,6 +5016,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="text"
                                       id="surname"
                                       name="surname"
@@ -4990,6 +5034,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="email"
                                       id="name"
                                       name="name"
@@ -5007,6 +5052,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="text"
                                       id="surname"
                                       name="surname"
@@ -5022,6 +5068,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="text"
                                       id="email"
                                       name="email"
@@ -5041,6 +5088,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="date"
                                       className="form-control date"
                                       id="birthdatepicker"
@@ -5058,6 +5106,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="date"
                                       className="form-control date"
                                       id="birthdatepicker"
@@ -5075,6 +5124,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="text"
                                       id="email"
                                       name="email"
@@ -5281,6 +5331,7 @@ selectHolidayFile= async(event) =>
                                         ].department = val.target.value;
                                         this.setState({});
                                       }}
+                                      disabled
                                     />
                                   </td>
                                   <td>
@@ -5302,6 +5353,7 @@ selectHolidayFile= async(event) =>
                                       }}
                                     /> */}
                                     <Switch
+                                    disabled
                                 // onChange={this.handleChange}
                                  onChange={(checked) => { 
                                   this.state.staffing[
@@ -5318,6 +5370,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                   <Switch
+                                  disabled
                                  //onChange={this.handleChange}
                                  onChange={(checked) => {
                                   this.state.staffing[
@@ -5334,7 +5387,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                      <Switch
-                                
+                                   disabled
                                  onChange={(checked) => {
                                   this.state.staffing[
                                     index
@@ -5350,7 +5403,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                   <Switch
-                                
+                                disabled
                                 onChange={(checked) => {
                                  this.state.staffing[
                                    index
@@ -5366,6 +5419,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="text"
                                       id="email"
                                       name="email"
@@ -5385,6 +5439,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="text"
                                       id="email"
                                       name="email"
@@ -5477,6 +5532,7 @@ selectHolidayFile= async(event) =>
                                   <td>{index + 1}</td>
                                   <td>
                                   <select 
+                                  disabled
                                  //onChange={(e) =>this.handleCost(e,index)} 
                                  onChange={val => {
                                   this.state.cost[index].cost_type =
@@ -5498,6 +5554,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="text"
                                       id="surname"
                                       name="surname"
@@ -5517,6 +5574,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="email"
                                       id="name"
                                       name="name"
@@ -5536,7 +5594,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                   <select 
-                                  
+                                  disabled
                                  //onChange={(e) =>this.handleCost(e,index)} 
                                  onChange={val => {
                                   this.state.cost[index].expense =
@@ -5561,6 +5619,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                        type="date"
                                        className="form-control date"
                                        id="birthdatepicker"
@@ -5580,6 +5639,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="date"
                                       className="form-control date"
                                       id="birthdatepicker"
@@ -5599,6 +5659,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="email"
                                       id="name"
                                       name="name"
@@ -5617,6 +5678,7 @@ selectHolidayFile= async(event) =>
                                   </td>
                                   <td>
                                     <input
+                                    disabled
                                       type="text"
                                       id="surname"
                                       name="surname"
@@ -5685,6 +5747,7 @@ selectHolidayFile= async(event) =>
                                 type="file"
                                 multiple
                                 onChange={this.procurementFile}
+                                disabled
                               />
                               </div>
                               <div className="dz-message needsclick">
@@ -6020,6 +6083,7 @@ selectHolidayFile= async(event) =>
                                 type="file"
                                 multiple
                                 onChange={this.riskImage}
+                                disabled
                               />
                             </div>
                             <div className="dz-message needsclick">
@@ -6403,6 +6467,7 @@ selectHolidayFile= async(event) =>
                                 type="file"
                                 multiple
                                 onChange={this.governanceImage}
+                                disabled
                               />
                             </div>
                             <div className="dz-message needsclick">
@@ -6745,7 +6810,7 @@ selectHolidayFile= async(event) =>
                       {/* end row */}
                     </div>
                     <br />
-                    <ul className="list-inline wizard mb-0">
+                    {/* <ul className="list-inline wizard mb-0">
                       {this.state.activeTab !== "basictab1" ? (
                         <li className="previous list-inline-item">
                           <button
@@ -6770,7 +6835,7 @@ selectHolidayFile= async(event) =>
                           Next
                         </button>
                       </li>
-                    </ul>
+                    </ul> */}
                   </div>
                   {/* tab-content */}
                 </div>

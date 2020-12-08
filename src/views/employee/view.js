@@ -95,7 +95,7 @@ getMySubscriptionStatus = async (id,email,type)=>
       let subscription_status = result.data.status;
       reactLocalStorage.set("subscription_status", subscription_status);
        console.log(subscription_status);
-      //  this.Memberfetch(id);
+      this.Memberfetch(id);
     }
    
     else{
@@ -116,7 +116,7 @@ getMySubscriptionStatus = async (id,email,type)=>
     if (data && Object.keys(data).length !== 0) {
       this.setState({ isLogin: true, userData: data, userId: data.id });
        this.getMySubscriptionStatus( data.id,data.email,data.type);
-     this.Memberfetch(data.id);
+    // this.Memberfetch(data.id);
     }
   };
 

@@ -10,6 +10,12 @@ export default class menu extends Component {
     this.state = {
       openProject: false,
       openReport: false,
+       openProject1: false,
+      openReport1: false,
+      openProject2: false,
+      openReport2: false,
+      openProject3: false,
+      openReport3: false,
       projects: [],
       type: "",
     };
@@ -119,6 +125,103 @@ export default class menu extends Component {
               <li>
                 <NavLink activeClassName="active" to="/view-member">
                 View Member
+                </NavLink>
+              </li>
+            </ul>
+          </li>
+          <li className="side-nav-item">
+            <a
+              href="javascript: void(0);"
+              className="side-nav-link"
+              onClick={() =>
+                this.setState({
+                  openReport1: !this.state.openReport1,
+                  openProject1: false,
+                })
+              }
+            >
+              <i className="uil-layer-group" />
+              <span> Project </span>
+              <span className="menu-arrow" />
+            </a>
+            <ul
+              className={
+                this.state.openReport1
+                  ? "side-nav-second-level mm-collapse mm-show"
+                  : "side-nav-second-level mm-collapse"
+              }
+              // className="side-nav-second-level mm-collapse mm-show"
+              aria-expanded="false"
+            >
+             
+              <li>
+                <NavLink activeClassName="active" to="/manage-projects">
+                Manage Projects
+                </NavLink>
+              </li>
+            </ul>
+          </li>
+          <li className="side-nav-item">
+            <a
+              href="javascript: void(0);"
+              className="side-nav-link"
+              onClick={() =>
+                this.setState({
+                  openReport2: !this.state.openReport2,
+                  openProject2: false,
+                })
+              }
+            >
+              <i className="uil-layer-group" />
+              <span> Portfolio </span>
+              <span className="menu-arrow" />
+            </a>
+            <ul
+              className={
+                this.state.openReport2
+                  ? "side-nav-second-level mm-collapse mm-show"
+                  : "side-nav-second-level mm-collapse"
+              }
+              // className="side-nav-second-level mm-collapse mm-show"
+              aria-expanded="false"
+            >
+             
+              <li>
+                <NavLink activeClassName="active" to="/manage-portfolios">
+                Manage Portfolio
+                </NavLink>
+              </li>
+            </ul>
+          </li>
+
+          <li className="side-nav-item">
+            <a
+              href="javascript: void(0);"
+              className="side-nav-link"
+              onClick={() =>
+                this.setState({
+                  openReport3: !this.state.openReport3,
+                  openProject3: false,
+                })
+              }
+            >
+              <i className="uil-layer-group" />
+              <span> Program </span>
+              <span className="menu-arrow" />
+            </a>
+            <ul
+              className={
+                this.state.openReport3
+                  ? "side-nav-second-level mm-collapse mm-show"
+                  : "side-nav-second-level mm-collapse"
+              }
+              // className="side-nav-second-level mm-collapse mm-show"
+              aria-expanded="false"
+            >
+             
+              <li>
+                <NavLink activeClassName="active" to="/manage-programs">
+                Manage Program
                 </NavLink>
               </li>
             </ul>

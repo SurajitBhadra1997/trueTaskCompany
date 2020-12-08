@@ -10,7 +10,9 @@ import EditProfile from "./views/userProfile/editProfile";
 // import Subtask from "./views/subtask";
 // import MytaskSubtask from "./views/mytasksubtask";
 // import Calender from "./views/calender";
-// import ProjectWizard from "./views/projects/wizard";
+ import ProjectWizard from "./views/projects/wizard";
+ import PortfolioWizard from "./views/projectList/portfoliowizard";
+ import ProgramWizard from "./views/projectList/programwizard";
 // import ProjectTimeline from "./views/projects/timeline";
 // import ProjectList from "./views/projects/projectList";
 // import ProjectList1 from "./views/projects/projectlist1";
@@ -36,6 +38,11 @@ import ManageSubscription from "./views/subscriptionreport/managesubscription";
 import ProfileReport from "./views/profilereport";
 import AddEmployee from "./views/employee/create";
 import ManageEmployee from "./views/employee/view";
+import ManageProject from "./views/projectview/manageproject";
+import Manageportfolio from "./views/portfolioview/manageportfolio";
+import ManageProgram from "./views/programview/manageprogram";
+
+
 
 
 //Admin Routes
@@ -62,6 +69,34 @@ const routes = [
     name: "ManageEmployee",
     component: ManageEmployee,
   },
+  {
+    path: "/manage-projects",
+    name: " ManageProject",
+    component:  ManageProject,
+  },
+  {
+    path: "/manage-portfolios",
+    name: "Manageportfolio",
+    component: Manageportfolio,
+  },
+  {
+    path: "/manage-programs",
+    name: " ManageProgram",
+    component:   ManageProgram,
+  },
+  {
+        path: "/project-wizardd:id",
+        name: "ProjectWizard",
+        component: ProjectWizard,
+      },
+      { path: "/portfolio-wizardd:id", 
+      name: "PortfolioWizard", 
+      component: PortfolioWizard },
+
+      { path: "/program-wizardd:id",
+       name: "ProgramWizard",
+        component: ProgramWizard },
+  
 
   { path: "/faq", name: "Faq", component: Faq },
   { path: "/profile", name: "Profile", component: Profile },
