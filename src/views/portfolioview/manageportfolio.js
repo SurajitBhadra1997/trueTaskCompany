@@ -157,7 +157,7 @@ export default class index extends Component {
           label: "Overviews",
           field: "overviews",
           sort: "asc",
-          width: 250,
+          width: 200,
         },
         {
           label: "Budget",
