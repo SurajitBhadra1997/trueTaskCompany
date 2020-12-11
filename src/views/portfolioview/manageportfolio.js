@@ -18,6 +18,7 @@ export default class index extends Component {
       name: "",
       u_id: "",
       isloading: true,
+      company_id:""
     };
   }
 
@@ -28,18 +29,20 @@ export default class index extends Component {
   getUserdata = async () => {
     let data = reactLocalStorage.getObject("user_data");
     if (data && Object.keys(data).length !== 0) {
-      this.setState({ isLogin: true, userData: data, userId: data.id });
+      this.setState({ isLogin: true, userData: data, userId: data.id,
+        company_id:data.id });
       this.projectData(data.id);
     }
   };
 
- projectData = async (userId)=>
+ projectData = async (companyId)=>
  {
    let data = {
-    user_id: userId,
+    company_id: companyId,
     };
+    console.log(data);
 
-    let result = await HttpClient.requestData("projectdata", "POST", data);
+    let result = await HttpClient.requestData("get-portfoliodata", "POST", data);
 
     console.log("result product", result);
 
@@ -57,12 +60,10 @@ export default class index extends Component {
 
           overviews: element.overviews,
           task: element.taskcount,
-          // address:element.address!=null?element.address:"",
-          //city :element.city,
-          //companyname:element.companyname,
-          // sub_category :element.sub_category_data.name,
-          //country:element.country,
-          date: moment(element.doj).format("DD/MM/YYYY"),
+          comment:element.comment_Count,
+          budget:element.budget,
+         
+          date: moment(element.created_at).format("DD/MM/YYYY"),
           //   status:
           //     element.status == true ? (
           //       <Button
@@ -93,7 +94,7 @@ export default class index extends Component {
               <Link
               to={{
                 pathname:
-                  "/portfolio-wizardd" + element.id ,
+                  "/portfolio-wizardd" + element.auto_id ,
              
               }}
             >
@@ -159,43 +160,31 @@ export default class index extends Component {
           width: 250,
         },
         {
-          label: "Task",
+          label: "Budget",
+          field: "budget",
+          sort: "asc",
+          width: 250,
+        },
+        {
+          label: "Program",
           field: "task",
           sort: "asc",
           width: 250,
         },
-        //   {
-        //     label: "Adress",
-        //     field: "address",
-        //     sort: "asc",
-        //     width: 250
-        //   },
-        //   {
-        //     label: "City",
-        //     field: "city",
-        //     sort: "asc",
-        //     width: 250
-        //   },
-        //   {
-        //     label: "CompanyName",
-        //     field: "companyname",
-        //     sort: "asc",
-        //     width: 250
-        //   },
-        //   {
-        //     label: "Country",
-        //     field: "country",
-        //     sort: "asc",
-        //     width: 250
-        //   },
-
         {
-          label: "RegDate",
+          label: "Comment",
+          field: "comment",
+          sort: "asc",
+          width: 250,
+        },
+        
+        {
+          label: "Date",
           field: "date",
           sort: "asc",
           width: 250,
         },
-
+        
         // {
         //   label: "Status",
         //   field: "status",
@@ -228,7 +217,7 @@ export default class index extends Component {
                 :( */}
           <div className="container-fluid">
             <div className="page-title-box">
-              <Breadcrumb pageTitle="Manage Projects" />
+              <Breadcrumb pageTitle="Manage Portfolio" />
             </div>
 
             <Row>

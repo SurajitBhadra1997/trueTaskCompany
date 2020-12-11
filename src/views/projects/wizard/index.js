@@ -3583,7 +3583,7 @@ selectHolidayFile= async(event) =>
                                               className="avatar-sm rounded bg-light"
                                               alt="preview"
                                             />
-                                            <a
+                                            {/* <a
                                               href
                                               className="text-muted close"
                                               data-dz-remove
@@ -3595,7 +3595,7 @@ selectHolidayFile= async(event) =>
                                               }}
                                             >
                                               <i className="dripicons-cross" />
-                                            </a>
+                                            </a> */}
                                           </div>
                                         );
                                       }
@@ -4336,7 +4336,7 @@ selectHolidayFile= async(event) =>
                                               className="avatar-sm rounded bg-light"
                                               alt="preview"
                                             />
-                                            <a
+                                            {/* <a
                                               href
                                               className="text-muted close"
                                               data-dz-remove
@@ -4348,7 +4348,7 @@ selectHolidayFile= async(event) =>
                                               }}
                                             >
                                               <i className="dripicons-cross" />
-                                            </a>
+                                            </a> */}
                                           </div>
                                         );
                                       }
@@ -4712,7 +4712,7 @@ selectHolidayFile= async(event) =>
                                       }}
                                     />
                                   </td>
-                                  <td>
+                                  {/* <td>
                                     {index == 0 ? null : (
                                       <button
                                         type="button"
@@ -4725,7 +4725,7 @@ selectHolidayFile= async(event) =>
                                         <i className="mdi mdi-window-close" />
                                       </button>
                                     )}
-                                  </td>
+                                  </td> */}
                                 </tr>
                               );
                             })}
@@ -5138,7 +5138,7 @@ selectHolidayFile= async(event) =>
                                       }}
                                     />
                                   </td>
-                                  <td>
+                                  {/* <td>
                                     {index == 0 ? null : (
                                       <button
                                         type="button"
@@ -5172,7 +5172,7 @@ selectHolidayFile= async(event) =>
                                         <i className="mdi mdi-window-close" />
                                       </button>
                                     )}
-                                  </td>
+                                  </td> */}
                                 </tr>
                               );
                             })}

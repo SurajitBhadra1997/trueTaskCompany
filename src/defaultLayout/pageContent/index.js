@@ -15,6 +15,7 @@ export default class index extends Component {
       img_url:"http://trutask.easytodb.com/uploads/user/",
       companyname:"",
       // lname:"",
+      fname:"",
     };
   }
   async componentDidMount() 
@@ -27,6 +28,7 @@ export default class index extends Component {
         user_data:data,
         companyname:data.name,
         // lname:data.lastname.charAt(0),
+         fname:data.name.charAt(0).toUpperCase(),
       });
     }
   }
@@ -138,7 +140,7 @@ export default class index extends Component {
                    
                   className="rounded-circle"
                  >
-                   C
+                   {this.state.fname}
                  </div>
                     
                    
